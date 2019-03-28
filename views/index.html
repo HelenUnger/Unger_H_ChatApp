@@ -15,13 +15,14 @@
 			<form>
 				<label for="message">Something to say?</label>
 				<textarea v-model="message" class="message" type="text" autocomplete="off" id="textarea"></textarea>
-				<input type="submit" v-on:click.prevent="dispatchMessage">
+				<input type="submit" @click.prevent="dispatchMessage">
 			</form>
 		</section>
 		
 		<section class="messages">
 			<ul id="messages" v-for="message in messages">
-                <newmessage :msg="message"></newmessage>				
+				<!-- render the message component here -->
+				<newmessage :msg="message"></newmessage>				
 			</ul>
 		</section>		
 	</main>
