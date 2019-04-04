@@ -30,6 +30,10 @@ const vm = new Vue({
         }
     },
 
+    updated: function(){
+        window.scrollTo(0, document.querySelector('body').scrollHeight + 5000);
+    },
+
     components: {
         newmessage: ChatMessage
     }
