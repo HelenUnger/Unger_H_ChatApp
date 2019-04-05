@@ -1,0 +1,71 @@
+
+
+@media screen and (min-width: 700px){
+    body{
+        font-size: 1em;
+    }
+}
+
+@media screen and (min-width: 1024px) and (min-height: 1366px){
+    .main-wrapper{
+        flex-direction: row;
+    }
+
+    body{
+        font-size: 1.7em;
+    }
+
+    .form-container {
+        position: fixed; 
+        width: 35%;
+        height: 100%;
+    }
+
+    .messages{
+        margin-left: 35%;
+    }
+
+    .modal form{
+        margin: 20% auto;
+    }
+}
+
+@media screen and (min-width: 1000px){
+
+    .form-container {
+        position: fixed; 
+        width: 35%;
+        height: 100%;
+    }
+
+    .messages{
+        margin-left: 35%;
+    }
+
+    .main-wrapper{
+        flex-direction: row;
+    }
+
+    .modal form{
+        margin: 10% auto;
+    }
+    main{
+        flex-direction: row;
+    }
+    .form-container{
+        flex: 1;
+    }
+    #notify{
+        height: 100px;
+        width: 100%;
+    }
+    #users{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1200px){
+    .form-container{
+        flex: 0.5;
+    }
+}

@@ -2,21 +2,39 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Socket IO Chat with Node!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MSN Live 2.0</title>
 	<link rel="stylesheet" href="css/main.css">
 	<script src="https://unpkg.com/vue"></script> 
 </head>
 <body>
-	<main id="app">		
-		<section class="form-container">
-			<label for="nickname">Your Nickname (optional)</label>
-			<input v-model="nickname" type="text" id="nickname" class="nickname" placeholder="What is your nickname?">
-			
+	<main id="app">
+		<div class="header"><a href="/loggedout" v-on:click.prevent="forceDisconnect">Leave Chat</a></div>	
+		<div class="main-wrapper">
+		<section class="modal" :class="{ nameModal : showModal }">
 			<form>
-				<label for="message">Something to say?</label>
-				<textarea v-model="message" class="message" type="text" autocomplete="off" id="textarea"></textarea>
-				<input type="submit" @click.prevent="dispatchMessage">
+				<div class="error" :class="{ 'name-error' : nameError }"><p>The message cannot be blank!</p></div>
+				<label for="nickname">Your Nickname</label>
+				<input v-model="nickname" type="text" id="nickname" class="nickname" placeholder="What is your nickname?">
+				<input type="submit" value="JOIN" @click.prevent="changeNickname">
 			</form>
+		</section>	
+		<section class="form-container">			
+			<form>
+				<!-- <label for="message">Something to say?</label> -->
+				<div class="error" :class="{ 'msg-error' : msgError }"><p>The message cannot be blank!</p></div>
+				<textarea v-model="message" class="message" type="text" autocomplete="off" id="textarea" placeholder="send a message here!"></textarea>
+				<input type="submit" value="SEND" @click.prevent="dispatchMessage">
+			</form>
+			<div class="notifications">
+			<ul id="notify">
+				<li v-for="notify in notifications.slice(notifications.length-3,notifications.length)">{{notify}}</li>
+			</ul>
+			<ul id="users">
+				<li>ONLINE USERS</li>
+				<li v-for="user in users">{{user.name}}</li>
+			</ul>
+			</div>
 		</section>
 		
 		<section class="messages">
@@ -24,7 +42,8 @@
 				<!-- render the message component here -->
 				<newmessage :msg="message"></newmessage>				
 			</ul>
-		</section>		
+		</section>
+	</div>		
 	</main>
 	<script src="/socket.io/socket.io.js"></script>
 	<script type="module" src="js/main_vm.js"></script>

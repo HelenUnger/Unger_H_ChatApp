@@ -1,18 +1,56 @@
 .new-message { 
-    span { font-size: 0.8rem; display: block; margin-bottom: 2px; }
+    span { font-size: 1em; display: block; margin-bottom: 3px; }
 
     width: 45%;
     padding: 8px 12px;
-    background-color: white; 
+    background-color: #ececec; 
+    color: #868686;
     border-radius: 8px;
     margin-bottom: 1rem;
 
     float:left;
     clear: both;
+
+    word-break: break-word;
+    &:not(.my-message){
+        span{
+            color: #000;
+        }
+    }
 }
 
 .my-message {
     float: right !important;
-    background-color: #86bf9d;
+    background-color: #2196f378;
     color: white;
+    span{
+        color: #3f51b5;
+    }
 }
+
+.error{
+    opacity: 0;
+    width: 100%;
+    color: red;
+}
+.msg-error, .name-error{
+    opacity: 1 !important;
+}
+
+.notifications{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#notify{
+    height: 50px;
+    width: 50%;
+    overflow: hidden;
+    color: #868686;
+}
+
+#users{
+    width: 50%;
+    color: #868686;
+}
+
