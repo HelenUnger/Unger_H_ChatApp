@@ -9,9 +9,13 @@ const port = process.env.PORT || 3000;
 // tell our app to use the public folder for static files
 app.use(express.static('public'));
 
-// instantiate the only route we need
+// instantiate the route
 app.get('/', (req, res, next) => {
     res.sendFile(__dirname + '/views/index.html');
+});
+
+app.get('/loggedout', (req, res, next) => {
+    res.sendFile(__dirname + '/views/loggedout.html');
 });
 
 // create server variable for socket.io to use
@@ -19,12 +23,21 @@ const server = app.listen(port, () => {
     console.log(`app is running on port ${port}`);
 });
 
+var users = [];
+
 // plug in the chat app package
 io.attach(server);
 
 io.on('connection', function(socket) {
-    console.log('a user has connected');
+    console.log('a user has connected', socket.server.sockets.adapter.sids);
     socket.emit('connected', {sID: `${socket.id}`, message: 'new connection'} );
+
+    //listen for incomming connection, send them to everyone
+    socket.on('userConnect', function(name){
+        users.push(name);
+        console.log(users);
+        io.emit('userConnect', {message: name, userList: users});
+    });
 
     // listen for incoming messages, and then send them to everyone
     socket.on('chat message', function(msg) {
@@ -35,7 +48,13 @@ io.on('connection', function(socket) {
         io.emit('chat message', { id: `${socket.id}`, message: msg });
     });
 
-    socket.on('disconnect', function() {
-        console.log('a user has disconnected');
+    //listen for user dis connect
+    socket.on('force disconnect', function(name){
+        let index = users.map(function(e) { return e.name; }).indexOf(name.name);
+        console.log('index: ' + index, name.name );
+        if (index > -1) {
+            users.splice(index, 1);
+         }
+        io.emit('userDisconnect', {message: name, userList: users});
     });
 });

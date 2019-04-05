@@ -3,18 +3,46 @@
 	margin: 0; padding: 0; box-sizing: border-box;
 }
 
-html, body { min-height: 100%; }
+html, body { height: 100%; }
 
-body { font: 16px Helvetica, Arial; }
+body { font-family: Helvetica, Arial; 
+		font-size: .8em;
+	}
 
 main { 
-	display: flex;
-	height: 100%;
-	flex-direction: row;
+	min-height: 100%;
 }
+
+.main-wrapper{
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column-reverse;
+	padding-top: 60px;
+}
+
+.header{
+display: block;
+width: 100%;
+height: 60px;
+position: fixed;
+background-color: #64acf0;
+z-index: 10;
+a{
+	color: #fff;
+	border: 2px solid #ebebeb;
+    text-decoration: none;
+    padding: 10px;
+    background-color: #528adf;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 6px;
+}
+}
+
 .form-container, .messages { padding: 20px; }
 .form-container { 
-	flex: 1; 
+	// flex: 1; 
 	border: 6px solid #bfcfd6;
 	background-color: #e3edf1;
 
@@ -23,8 +51,8 @@ main {
 
 .messages { 
 	flex: 2;
-	background-color: #eee;
-	border: 6px solid #e2e0e0; 
+	background-color: #fff;
+	border: 6px solid #f7f7f7; 
 }
 
 input, textarea { 
@@ -33,30 +61,52 @@ input, textarea {
 	border: 2px solid #bfcfd6;
 	//border-color: #bfcfd6; 
 	border-radius: 4px; 
-	font-size: 0.8rem; 
+	font-size: 1em; 
 	padding: 0.4rem; 
 	border-style: solid;
 }
 
-textarea { height: 135px; }
+textarea { height: 80px;
+font-size: 1.5em; }
 
+.modal{
+	position: absolute;
+	height: 93%;
+	width: 100%;
+	background-color: #7f7f7fba;
+	display: none;
+	z-index: 5;
+	form{
+		margin: 40% auto;
+		width: 70%;
+		padding: 50px;
+		background-color: #64acf0;
+		
+	}
+}
 
+.nameModal{
+	display: block;
+}
 
 form {
-	//background: #000;
+	border-radius: 10px;
 	padding: 3px;
 	margin: 12px auto;
 
 	input[type=submit] { 
 		width: auto; 
 		padding: 10px; 
-		background-color: rgb(75, 200, 17);
+		background-color: #528adf;
 		margin-top: 1rem; 
 		border-radius: 8px;
 		color: white;
 		cursor: pointer;
 		text-transform: uppercase;
 		font-weight: bold;
+		&:hover{
+			background-color: rgb(50, 112, 204);
+		}
 	}
 }
 
@@ -64,9 +114,10 @@ form {
 	list-style-type: none; margin: 0; padding: 0;
 
 	li { padding: 5px 10px;	}
-	li:nth-child(odd) { background: #eee; }
+	li:nth-child(odd) { background: rgb(255, 255, 255); }
 }
 
 // imports
 
 @import 'modules/_message';
+@import 'modules/_queries';
