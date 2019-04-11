@@ -3,7 +3,7 @@
 
     width: 45%;
     padding: 8px 12px;
-    background-color: #ececec; 
+    background-color: #fff; 
     color: #868686;
     border-radius: 8px;
     margin-bottom: 1rem;
@@ -43,14 +43,26 @@
 }
 
 #notify{
-    height: 50px;
+    height: min-content;
     width: 50%;
     overflow: hidden;
     color: #868686;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #bfcfd682;
 }
 
 #users{
     width: 50%;
     color: #868686;
+    list-style: none;
+    padding: 5px 10px;
+    background-color: #96f99780;
+    border-radius: 10px;
+    max-height: 6rem;
+    overflow: overlay;
+    li:first-of-type{
+        color: green;
+    }
 }
 
