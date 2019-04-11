@@ -10,6 +10,7 @@ function setUserId({sID, message}) {
 
 function appendMessage(message) {
     vm.messages.push(message);
+    document.querySelector('.sound').play();
 }
 
 function appendConnect(obj){
@@ -46,6 +47,12 @@ const vm = new Vue({
     },
 
     methods: {
+
+        addEmoji(e){
+            let emoji = e.target.dataset.value;
+            this.message = this.message + emoji;
+        },
+
         dispatchMessage() {
             if(this.message != ""){
             this.msgError = false;
@@ -59,6 +66,9 @@ const vm = new Vue({
 
         changeNickname(){
             if(this.nickname != ""){
+                // users.forEach(user => {
+                //     console.log(user.name.value);
+                // });
             socket.emit('userConnect', { name: this.nickname } );
             this.showModal=false;
             }else{
