@@ -11,9 +11,11 @@ These instructions will get you a copy of the project up and running on your loc
 'npm run start' to get it running locally on port 3000 
 
 ### What it looks like...
+what the user first sees, nickname has to be submitted and cannot be blank
+![](public/images/chatapp.png)
 
-![](public/images/chatapp.jpg)
-![](public/images/emojis.jpg)
+what the chatting looks like, to leave must click on 'leave chat'
+![](public/images/emojis.png)
 
 ### Prerequisites
 
