@@ -38,10 +38,6 @@ the master branch is linked to heroku which is currently live at https://msnlive
 
 * **Helen Unger** - *design and additional modifications*
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
 ## Acknowledgments
 
 *thanks trevor for the base of the app
